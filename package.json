@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.3.2",
+    "emailjs-com": "^3.2.0",
+    "react": "^18.2.0",
+    "react-router-dom": "^6.20.0",
+    "react-toastify": "4.1"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}

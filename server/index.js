@@ -10,5 +10,12 @@ app.use(cors());
 app.use('/',router);
 const PORT = 8050;
 
-DBConnection();
-app.listen(PORT, () => console.log(`Server survived on port ${PORT}`));
+
+app.listen(PORT, async() =>{
+     console.log(`Server survived on port ${PORT}`)
+     console.log(`Connecting with DB`);
+
+    await DBConnection();
+     console.log(`Connected with DB`);
+
+    });

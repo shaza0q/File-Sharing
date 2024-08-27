@@ -1,0 +1,437 @@
+Horizon dashboard: GUI, provides overview of components
+1. nova: computer service, where you launch instance
+2. glance: image service, snapshots, register, retrieve the VM
+3. keystone: identity, providea authentication and authorization
+4. swift: object storage, stores data efficiently, cheaply.
+5. neutron: networking service, can make own nt.
+6. cinder: block storage, virtualise mng. of block service
+7. heat: orchestration
+8. celiometer: billing, what service using, and for how long
+
+
+(I) IEEE 802.15.4: works in only Physical layer and Data link layer. Uses SSCS(service specific convergence sublayer) to comm with all upper layers
+
+Topologies:
+1. Star
+2. Mesh
+
+NEtworks: 
+1. Beacon enabled network: - periodic transmission of beacon msg.
+- data frames sent via slotted CSMA/CA with PAN coordinator
+- beacon msg used for synchronisation and association
+
+2. Non Beacon enabled network: - data frames sent via unslotted CSMA/CA with PAN coordinator
+- beacon msg only used for detection of link layer
+
+Frames:
+1. Beacon
+2. MAC
+3. Command
+4. Acknowledge
+5. Data
+
+Types: 
+1. FFD: full functional device: can comm with anyone
+- supports full protocol
+
+2. RFD: reduced functional device: can comm with only ffd
+- low power consumption
+
+------------------------------------------------------------
+
+(II) ZigBee: enhancement of IEEE 802.15.4 Works in 3 and abpve layers.
+- Uses transport and network layer for additional comm with authentication, data routing etc.
+
+Components:
+1. ZDO: ZigBee Device object(device mng. security and policies)
+2. APS: Application Support Sublayer (interface and control serivce b/w other layer and n/w layer)
+
+Topologies:
+1. Mesh: self configuring and self healing
+2. Star
+3. Tree
+
+ZiBee types:
+1. Cordinator: Main device, stores info of network
+2. Router: relaying info b/w connected nodes, can run applications
+3. End Device: can talk to parent node, Sleeps most to conserve battery life
+
+Networking:
+- Uses Ad Hoc on demand distance vector(AODV) to find final destination.
+- sends route request to all immediate neigbhour. and those negibhour send it further.
+- Gets the info about destination, find the lowest cost path to travel
+
+---------------------------------------------------------------
+
+(III) LowPAN6: Low power wireless personal area network IPV6
+- allow small devices to wirelessly transmit data using an internet protocol
+- created by IETF
+- Compresses the IPV6 128 bit address to fit the IEEE 802.15.4 format.
+
+Address:
+1. 64 bit add.: globally unique
+2. 16 bit add.: PAN specific, assigned by coordinator
+
+Header types:
+1. Dispatch: start comm. (1-2: identifies dispatch type)(3-8: dispatch)
+2. Mesh:(1-2: ID)(3-4: V(0-1) if org. is 64 bit or 16 bit AND F(0-1) same as V)(5-8: hops Left)
+3. Fragmentation: (1-4: 1100)- First fragment have size and tag
+- subsequent fragment have datagram offset with above size and tag.
+
+Routing:
+1. LOADnd: uses lightweight AODV
+- supports optimised flooding
+- basic operations:- 1. route request 2. route replies 3. route error msg
+2. RPL: low power and lossy n/w.
+- shorter delays, less control overhead, less memory
+- proactive: maintaing routing topology, Reactive: resolving routing inconsistencies
+
+---------------------------------------------------------
+
+(IV) RFID: radio frequency identification uses circuit and antenna. derived from autm. iden. data capture(AIDC)
+- passive and active reader. works through induction, and uses radio waves
+
+------------------------------------------------------ 
+
+(V) MQTT: message queue telemetry transpot
+- uses publish subscribe model
+- broker manage it
+
+(VI) SMQTT: secured mqtt
+- have four stages: setup, encrypt, public, decrypt.
+
+(VII) CoAP: constraint Application protocol.
+- based on request response model
+- sublayers of coap: messaging and request/response
+
+(VIII) XMPP: extensible messaging presence protocol
+- used for real time exchange of data using XML.
+- decentralised and open source
+- Uses client server model
+- Tech: core, Pubsub, jingle, multichat, bosh
+
+(IX) AMQP: Advanced message queuing protocol
+- frame type: begin, open, attach, flow, transport, disposition, dettach, close, end
+- components:
+1. exchange: recive msg and route them to queue
+2. queue: separate queue for separate business, cons. recieve msg from queue
+3. bindings: rule for dist. of msg
+- Exhcanges: Direct, FanOut, Topic, Header
+
+------------------------------------------------------------
+
+(X) HART: highway addressable remote transducer protocol
+- for network smart field devices, enables placement of devices more accessible
+- wired HART lacks n/w layer
+- wireless HART n/w manager handles code-based network security and prevents unauthorized node access to n/w
+- nodes hop after every message changing channel every time
+- Uses TDMA( timed division multiple access)
+- compatible with new and legacy devices.
+
+------------------------------------------------------------
+
+(XI) NFC: near field communication
+- same like RFID
+- have passive and active devices
+- Modes of operation: Peer to Peer, Read/Write, Card Emulation
+- uses transmission frequency of 13.56 MHz
+
+-----------------------------------------------------------
+
+(XII) Bluetooth: short range comm, using AdHov piconet
+- supports 1mbps for v1.2 and 3mbps for v2.0 with error data rate.
+- Class 3 radios have range(1 mtr).
+- Class 2 radios range(10 mtr).
+- Class 1 radios range(100 mtr).
+- MODES:
+1. Active: actively transmit data
+2. Sniff: sleep and only listen for transmission at specific interval of time
+3. Hold: power saving mode sleeps for defined period of time and becomes active afterwards
+4. Park: master slave relation where it is inactive unitll master tells it to wake up.
+
+PROTOCOLS IN IT:
+
+* L2CAP: logical link control and adaptation protocol.
+- over baseband and reside in data link layer
+- provides conn. oriented and conn.less data service to upper layer
+
+* RFComm: radio freq. comm.
+- generates virtual data stream
+- supports upto 60 conn.
+
+* SDP: Service Discovery Protocol
+- enables app. to discover available services and feaures\
+- uses request/response model
+
+* piconet: have master save orientation for the same device
+- The one device which initialise est. of piconet becomes master and rest slave
+- can contain upto 7 slaves and 1 master
+- a device can be member of two or more piconet
+
+(XIII) ZWave: comm protocol among devices for home automation.
+- uses RF signalling
+- uses MESH topology with 232 nodes in n/w
+- uses GFSK modulation and manchester channel encoding
+- have home id(4 byte) with separate id(1 byte) for n/w devices in it
+
+(XIV) ISA 100.11A: international society of automation.
+- n/w and transport layer based on TCP ODP/IPv6.
+- physical and MAC layer based on IEEE802.15.4
+- twin data network security: data link layer encrypts each hop, transport layer secures peer to peer comm.
+
+---------------------------------------------------
+
+Node Behaviour in WSN:
+
+1. normal: works fine
+2. Failed node: down due to battery or environmental cond.
+3. Badly failed: can sent false routing info, threat to integrity.
+4. selfish: not willing to cooperate at personal cost.
+5. malicious node: aims to disrupt the correct operation of routing protocol, denying n/w services.
+
+- CoRD and CoRAD are used to etect dumb nodes in n/w
+- INTSEM(info. theoretic self mngmt) controls transmission rate of a node by adjustin sleep time of node.
+- Fuzzy inference system(FIS) and markov decision process(MDP) are used to optimise energy consumption. 
+
+---------------------------------------------------------
+
+- Types of reporting:
+1. Event driven
+2. On Demand
+
+- objective is to use min. no. of sensors and maximise the n/w lifetime.
+
+- Area coverage algo called as optimal geographical density control, for distributed, localised.
+
+- barrier coverage: 1-b cov.= at least 1 sensor node,  2-b cov.=at least 2 sensor node, k-b cov.= at least k sensor node.
+
+- If all nodes have the same sensing range, the distance between them is root(3).Rs
+
+- MANET: mobile adhoc n/w follows self CHOP(configure, heal, optimise, protect)
+
+- Participatory sensing: By Burke et al(2006) collect data and allow common people to access data and share knowledge
+
+- UAV n/w: topologies, STAR and MESH
+
+- FANET: flying adhoc n/w. for disaster emergencies.
+
+- SCADA: supervisory control and data acquistion system. For isolated systems using proprietary solutions.
+
+- M2M node types: 
+1. Low end: cheap and low capabilities
+- static simple and energy efficient.
+- monitoring application.
+2. Mod end: more expensive than low end.
+- node mobility, more functionality.
+- QoS, TCP/IP, intellogence
+3. High end: can handle multimedia data with Qos
+- in bio/medical and military
+
+-M2M ecosystem: device provider, ISP, platform provider, service provider, service user.
+
+- Types of interoperability: USER(b/w user and device) DEVICE(b/w devices)
+
+- DEVICE IDENTIFICATION: 
+1. UNSPSC: united nation standard products and services code.
+2. EPC: electronic product codes
+3. UPC: universal products code
+4. URI: uniform resource identifier
+
+- SYNTACTIC interoperability: message format device and user
+1. Service oriented computing(SOC)
+2. web services
+3. RESTful web service
+4. open standard and closed standard protocol
+
+- SYMANTIC interoperability: message meaning device and user
+1. Ontology: device, physical domain, estimation
+2.  Cosign: object's collaborative concept sign. 
+EXAMPLE: cosign of object(A,B,C,D) = A is internal identifer, B is natural language, C is context of A, D is def. of object
+
+- UMB: universal middleware bridge. creates virtual map and compatibility among these middleware home networks.
+- Components:
+1. UMB Adaptor: converts phy. device to virtual using UDT template. UDT has device, function, action, event ID.
+* it translate local midd. msg to global metadata msg.
+2. UMG core: routing the converted metadata msg to dest. using middleware routing table(MRT).
+
+- networking in python: provides services for client-server model.
+SYNTAX: socket.socket(sk_family, sk_type, protocol=0)
+
+- Any language that will compile for ARMv6 can be used with raspberry pi
+
+- In python on SERVER side bind is used and on CLIENT side connect is used.
+
+- Data processing: data splitting/filtering and data plotting
+
+- SDN maintains a flow table at every switch. separates data plane and control plane.
+
+- OpenFlow is a protocol used to communicate b/w data plane and control plane. It decides which rules are to be placed in the switch to minimize to time delay for new rule that is brought from the controller.
+
+- Southbound API: control layer and infrastructure.
+- Northbound API: control layer and application layer.
+- EastWestbound API: among multiple controller in control layer
+
+- Security in SDN: firewall, proxy, HTTP, intrusion detection system(IDS)
+
+- MININET: based on python, used to create virtual n/w with openFlow enabled switches.
+
+- controller configuration software: ONOX, openDayLight, POX, NOX, floodLight.
+
+- ANDSF: access n/w discovery and service function
+
+- Approaches for rule placement in moble SDN WSN:
+1. ODIN: it has ODIN agent and master, agent at MAC device and master at controller.
+
+2. UBI-FLOW: mobility mngmt by scalable control of APs, fault tolerance, n/w partition, n/w matching load balancing.
+
+3. MOBI-FLOW: monility aware flow rule placement in SDIoT.
+- Proactive rule placement based on users movement in n/w.
+- Done by using location prediction(order k markov predictor) and place rule at the APs which are optimal acc. to the flow.
+- ctrl msg overhead and energy consm. is less in MOBI_FLOW.
+
+- Type of flow for rule palcement:
+1. MICE flow: for small flow use wildcard rules.
+2. ELEPHANT flow: for large flow use exact match rules.
+
+- Trends in cloud computing:
+1. CLUSTER COMP: for homogeneous nodes. working together
+2. GRID COMP: for heterogeneous nodes over a wide area
+3. UTILITY COMP: packaged resources available for computing.
+4. CLOUD COMP: shared pool of comp. resources, avail. on demand
+
+- 1950s: time shared mainframe comp
+- 1969: ARPANET
+- 1970s: VM by IBM
+- 1990s: internet expansion, inception of VPNs
+- 1996-97: cloud computing
+- 1999: salesforce.com
+- 2002: AWS
+- 2006: amazon EC2
+- 2008: google app engine, microsoft azure.
+
+- components of cloud computing: CLIENT, SERVICES, APPLICATION, INFRASTRUCTURE, STORAGE, PLATFORM
+
+- economics depends on 4 customer pop. metrics:
+1. no. of unique cust. sets
+2. duty cycle of cust. set
+3. relative displacement duty cycle
+4. load of cust. set
+
+- SECURITY in cloud:
+1. n/w level security: availability of internet resources correctly to genuine users
+2. host level security: at PaaS and SaaS, hide host OS from end user
+3. Application level security: both CSP ans user are responsible. PaaS, SaaS 
+
+- IAM: identity and access management allows access to legitimate user at prpper time for right reasons
+
+- Cloud simulators: evaluate servies, testing, repeated evaluation, control environment, early issue detection, design of countermeasure.
+- Examples are: cloudanalyst, greencloud, cloudsim, icancloud, groundsim, DCsim.
+
+- CLOUDSIM: based on java, examines peroformance of application service. Layers in cloudSIm:
+1. top most layer: has diff. machine and application specifications.
+2. Middle Layer: provies cloud environment, enables modelling and simulation.
+3. Bottom Layer: event scheduling, entity creation, clock sync., interaction b/w components.
+
+- CLOUD ANALYST: based on cloudsim, have a GUI. purpose: study behaviour uder various deployment comfiguration.
+
+- GREEN Cloud: monitors the energy consumption of servers, switches and provide the data
+
+- WORKFLOW of SENSOR CLOUD: user org, sensorML interpretor(creates a VS instance), virtual sensor manager(manage oprn.), VS comtroller, resoure manager
+
+
+- Data Fusion Stages:
+1. Decision level: ensemble of decision
+2. Feature level: fusion of info prior to decision making
+3. Pixel level: fusion of info at imaging device level
+4. Signal level: fusion of info at sensor node in local n/w
+
+- Mathematical method of data fusion:
+1. Probability based: Bayesian, statistics, recursive
+2. AI based: ANN, CNN, ML
+3. Evidence based: Belief func, transferable belief model
+
+
+- HAN(home area n/w) Standards:
+1. UPnP: universal plund n play is application layer tech for web based. 
++ Support for zero configuration n/w and automatic discovery of devices.
+
+2. DLNA(digital living network allicance): connect cable based n/w with wireless n/w. 
++ Shares n/w media resources.
+
+3. Konnex: utilises full range of home comm. infractructure power lines, cables, Rf, etc.
++ Must be setup and configured via a software before usage.
+
+4. LonWorks(local operation n/w): every device contains a neuron chip, a transreciever and application electronics. chip has microprocessors, RAM ROM IO ports. 
++ creates smart devices that can comm.
+
+5. X10: for remote control of compliant ttransmitters.
++ Transmission of bits over AC carrier signal. Low speed and low data rate for control of lightning, etc.
+
+6. Zigbee
+
+
+- HAN Architecture:
+
+1. DOMONET: uses XML for description and web services for control. follows service oriented architecture.
++ central gateway to connect diff. tech.
+
+2. JINI: connect various devices sharing their resources with auto confi, and auto installation. 
++ Based on JAVA, and creates an organised distribution system without central node. use bytecode to run JVM
+
+
+- HAN initiatives:
+
+1. Project hydra: middleware for embedded intelligent systems. connects a service oriented architecture network, uses a hydra client whcih acts as proxy b/w device and middleware.
+
+2. Amigo: ambient intelligent system for n/w home system. user-friendly interface with interoperability and auto discovery od devices.
+
+
+- INN classification: Intelligent network nodes
+
+1. RESISTOR: open close
+2. Motor: clockwise anitclockwise stop
+3. SWITCH: knob pneumatic electromagnetic
+4. SENSOR: rheostatic transducer transformer
+5. ASSEMBLED: separate electronic control
+
+
+- Layers in body brain architecture:
+
+1. Sense and execution layer(BODY): sense, actuator, v2x
+
+2. Network and transmission layer(NERVOUS SYSTEM): can, lin, flexray
+
+3. Decision layer(BRAIN): administering node(monitoring)(info. transim), supervisory node(control of sensor)(command transim.)
+
+
+- IEEE 1609 family:
+1609.0: architecture
+1609.1: resource manager
+1609.2: security service
+1609.3: newtworking service
+1609.4: multichannel service
+1609.11: over the air data exchange
+
+
+- VANET DOMAIN: 
+
+1. in vehicle: comm. through CAN(controller area n/w) and VPLN(vehicular powerline n/w)
++ OBU static
+2. adhoc: comm. through DSRC
++ OBU dynamic and RSU static
+3. infrastructure: direct comm wihout RSU to the internet.
++ 3G/4G comm.
+
+
+- ANOVA: compare, 2 or more cluster of data. Having one categorical factor with >= 2 levels
+require data of normally distribued population.
+
+- F-ratio: ratio b/w variance of two datasets. 1=for T null hyp. 1<for F null hyp.
+
+
+
+
+
+
+
+
